@@ -1,20 +1,33 @@
 import random
 import string
 
-print("=== GERADOR DE SENHAS ===")
+def gerar_senha(tamanho, usar_numeros, usar_simbolos):
 
-try:
-    tamanho = int(input("Digite o tamanho da senha: "))
+    caracteres = string.ascii_letters
 
-    caracteres = string.ascii_letters + string.digits + string.punctuation
+    if usar_numeros:
+        caracteres += string.digits
+
+    if usar_simbolos:
+        caracteres += string.punctuation
 
     senha = ""
 
     for i in range(tamanho):
         senha += random.choice(caracteres)
 
-    print("\nSenha gerada:")
-    print(senha)
+    return senha
 
-except:
-    print("Digite apenas números!")
+
+print("=== GERADOR DE SENHAS ===")
+
+tamanho = int(input("Digite o tamanho da senha: "))
+
+numeros = input("Deseja usar números? (s/n): ").lower() == "s"
+
+simbolos = input("Deseja usar símbolos? (s/n): ").lower() == "s"
+
+senha_gerada = gerar_senha(tamanho, numeros, simbolos)
+
+print("\nSenha gerada:")
+print(senha_gerada)
